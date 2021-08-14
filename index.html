@@ -2,29 +2,29 @@
 
 <head>
 	<meta charset="utf-8">
+	<link rel="stylesheet" type= "text/css" href="style.css">
 	<script>
-		// TODO: create a handler
-		function setSearchEngine(event) {
-			let searchTerm = document.querySelector('input[name=q]');
-			let selection = document.querySelector('input[name=engine]:checked');
-			const form = document.getElementById('searchForm');
-			const actions = {
-				'google': 'https://www.google.com/search',
-				'duckDuckGo': 'https://duckduckgo.com/',
-				'bing': 'https://www.bing.com/search',
-				'ask': 'https://www.ask.com/web'
-			};
-			if (searchTerm === null || selection === null) {
-				alert('Please enter a Search Term and select a Search Engine.')
-				event.preventDefault();
-			} else {
-				let actionURL = actions[selection.value];
-				form.setAttribute('action', actionURL);
-			}
-		}
 		window.addEventListener("load", function(){
 			// TODO: register the handler
 			const form = document.getElementById('searchForm');
+			// TODO: create a handler
+			function setSearchEngine(event) {
+				let searchTerm = document.querySelector('input[name=q]');
+				let selection = document.querySelector('input[name=engine]:checked');
+				const actions = {
+					'google': 'https://www.google.com/search',
+					'duckDuckGo': 'https://duckduckgo.com/',
+					'bing': 'https://www.bing.com/search',
+					'ask': 'https://www.ask.com/web'
+				};
+				if (searchTerm.value === '' || selection === null) {
+					alert('Please enter a Search Term and select a Search Engine.')
+					event.preventDefault();
+				} else {
+					let actionURL = actions[selection.value];
+					form.setAttribute('action', actionURL);
+				}
+			}
 			form.addEventListener('submit', setSearchEngine);
 		});
 	</script>
